@@ -1,1 +1,3288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="La Fontaine Café — A neighbourhood café in Southgate, North London. Serving great coffee, breakfast and lunch at 12 Onslow Parade, London N14 5JN.">
+<title>La Fontaine Café — Southgate, North London</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Satoshi:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESET & ROOT VARIABLES
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+:root {
+  --sage: #ACC8A2;
+  --olive: #1A2517;
+  --gold: #DFC160;
+  --cream: #F7F3EA;
+  --charcoal: #1B1B1B;
+  --sage-light: #c8dcc4;
+  --sage-mid: #8aac80;
+  --cream-dark: #ede8dc;
+  --text-primary: #1B1B1B;
+  --text-secondary: #3a3a3a;
+  --text-muted: #6a6a6a;
+  --bg-primary: #F7F3EA;
+  --bg-secondary: #eee9de;
+  --bg-card: rgba(255,255,255,0.7);
+  --nav-bg: rgba(247, 243, 234, 0.95);
+  --nav-solid: #F7F3EA;
+  --border: rgba(172, 200, 162, 0.3);
+  --shadow: rgba(26, 37, 23, 0.08);
+  --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-fast: 0.2s ease;
+  --radius: 4px;
+  --radius-lg: 8px;
+}
+
+[data-theme="dark"] {
+  --text-primary: #F7F3EA;
+  --text-secondary: #d4cfc4;
+  --text-muted: #9a9589;
+  --bg-primary: #1A2517;
+  --bg-secondary: #141e11;
+  --bg-card: rgba(26, 37, 23, 0.8);
+  --nav-bg: rgba(20, 30, 17, 0.96);
+  --nav-solid: #141e11;
+  --border: rgba(172, 200, 162, 0.15);
+  --shadow: rgba(0, 0, 0, 0.3);
+  --cream: #F7F3EA;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Playfair Display', Georgia, serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+h1, h2, h3, h4, h5, h6,
+.nav-logo, .nav-links a, .btn, .label-tag, .menu-tab,
+.filter-btn, .hours-table, .footer-nav a {
+  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 600; }
+h4 { font-size: 1rem; font-weight: 600; }
+
+p { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; line-height: 1.8; color: var(--text-secondary); }
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.container-wide {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-label {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.gold-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin: 24px 0;
+}
+
+.gold-divider.center { margin: 24px auto; }
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--olive);
+  color: var(--cream);
+}
+
+[data-theme="dark"] .btn-primary {
+  background: var(--sage);
+  color: var(--olive);
+}
+
+.btn-primary:hover {
+  background: var(--charcoal);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background: var(--sage-light);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-color: rgba(26, 37, 23, 0.25);
+}
+
+[data-theme="dark"] .btn-secondary {
+  border-color: rgba(172, 200, 162, 0.3);
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#navbar.transparent {
+  background: transparent;
+}
+
+#navbar.solid {
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 14px 0;
+  box-shadow: 0 1px 0 var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.nav-logo {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+#navbar.transparent .nav-logo { color: #F7F3EA; }
+#navbar.transparent .nav-logo span { color: rgba(247,243,234,0.6); }
+
+.nav-logo span {
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+  position: relative;
+  padding-bottom: 2px;
+}
+
+#navbar.transparent .nav-links a { color: rgba(247,243,234,0.85); }
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width var(--transition);
+}
+
+.nav-links a:hover::after { width: 100%; }
+.nav-links a:hover { color: var(--text-primary); }
+#navbar.transparent .nav-links a:hover { color: #fff; }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.nav-phone {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all var(--transition);
+}
+
+#navbar.transparent .nav-phone {
+  color: rgba(247,243,234,0.9);
+  border-color: rgba(247,243,234,0.25);
+}
+
+.nav-phone:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.nav-phone svg { width: 13px; height: 13px; stroke: currentColor; }
+
+/* Theme Toggle */
+.theme-toggle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+#navbar.transparent .theme-toggle {
+  border-color: rgba(247,243,234,0.25);
+  color: rgba(247,243,234,0.85);
+}
+
+.theme-toggle:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.theme-toggle svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+.theme-toggle .icon-moon { display: none; }
+[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
+
+/* Mobile Nav Toggle */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+  background: none;
+  border: none;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text-primary);
+  transition: all var(--transition);
+}
+
+#navbar.transparent .nav-hamburger span { background: rgba(247,243,234,0.9); }
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-primary);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mobile-menu a {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: color var(--transition-fast);
+}
+
+.mobile-menu a:hover { color: var(--gold); }
+
+.mobile-menu-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  padding: 8px;
+}
+
+.mobile-menu-phone {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-top: 16px;
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+#hero {
+  min-height: 100vh;
+  background: var(--olive);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-texture {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(172, 200, 162, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(223, 193, 96, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 120px 0 80px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Hero Left */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.hero-label {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+}
+
+.hero-label-line {
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero-headline {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--cream);
+  margin-bottom: 28px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.35s forwards;
+}
+
+.hero-headline em {
+  font-style: italic;
+  color: var(--sage);
+  font-weight: 400;
+}
+
+.hero-para {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(247, 243, 234, 0.65);
+  max-width: 400px;
+  margin-bottom: 36px;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
+}
+
+.hero-hours-preview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(247, 243, 234, 0.5);
+  letter-spacing: 0.06em;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.62s forwards;
+}
+
+.hours-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sage);
+  flex-shrink: 0;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.72s forwards;
+}
+
+.hero-ctas .btn-primary {
+  background: var(--sage);
+  color: var(--olive);
+}
+
+.hero-ctas .btn-primary:hover {
+  background: var(--sage-light);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(172, 200, 162, 0.2);
+}
+
+.hero-ctas .btn-secondary {
+  color: rgba(247, 243, 234, 0.75);
+  border-color: rgba(247, 243, 234, 0.2);
+}
+
+.hero-ctas .btn-secondary:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+/* Hero Right */
+.hero-right {
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  transform: translateX(24px);
+  animation: fadeRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards;
+}
+
+.hero-img-frame {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+}
+
+.hero-img-frame::before {
+  content: '';
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  bottom: 16px;
+  left: 16px;
+  border: 1px solid rgba(223, 193, 96, 0.2);
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-img-frame img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+}
+
+.hero-img-badge {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  z-index: 2;
+  background: var(--cream);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero-img-badge-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.hero-img-badge-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-img-badge-text strong {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+}
+
+.hero-img-badge-text span {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.65rem;
+  color: #6a6a6a;
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeRight {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ============================================================
+   OUR STORY SECTION
+   ============================================================ */
+#story {
+  padding: 100px 0;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.story-content {}
+
+.story-headline {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.story-headline em {
+  font-style: italic;
+  color: var(--sage-mid);
+  font-weight: 400;
+}
+
+[data-theme="dark"] .story-headline em { color: var(--sage); }
+
+.story-body {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.story-body:last-of-type { margin-bottom: 36px; }
+
+.story-signature {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-top: 32px;
+}
+
+.story-img-col {
+  position: relative;
+}
+
+.story-img-main {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px var(--shadow);
+}
+
+.story-img-accent {
+  position: absolute;
+  bottom: -24px;
+  right: -24px;
+  width: 55%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 4px solid var(--bg-primary);
+  box-shadow: 0 12px 40px var(--shadow);
+}
+
+.story-tag-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.story-tag {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  transition: all var(--transition);
+}
+
+.story-tag:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ============================================================
+   INTERIOR EXPERIENCE
+   ============================================================ */
+#interior {
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.interior-wrap {
+  position: relative;
+  height: 600px;
+}
+
+.interior-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 6s ease;
+}
+
+.interior-wrap:hover .interior-img {
+  transform: scale(1.03);
+}
+
+.interior-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(26, 37, 23, 0.75) 0%,
+    rgba(26, 37, 23, 0.4) 50%,
+    rgba(26, 37, 23, 0.15) 100%
+  );
+  display: flex;
+  align-items: center;
+}
+
+.interior-content {
+  max-width: 500px;
+  padding: 0 60px;
+}
+
+.interior-label {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.interior-label::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.interior-headline {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  color: #F7F3EA;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.interior-headline em {
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(247, 243, 234, 0.7);
+}
+
+.interior-para {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(247, 243, 234, 0.7);
+}
+
+.interior-features {
+  display: flex;
+  gap: 24px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.interior-feat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 234, 0.6);
+}
+
+.interior-feat::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* ============================================================
+   MENU SECTION
+   ============================================================ */
+#menu {
+  padding: 100px 0;
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] #menu { background: var(--bg-secondary); }
+
+.menu-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.menu-headline {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.menu-subline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+/* Filter Tabs */
+.menu-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.filter-btn {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 9px 20px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  border-color: var(--gold);
+  color: var(--text-primary);
+}
+
+.filter-btn.active {
+  background: var(--olive);
+  border-color: var(--olive);
+  color: var(--cream);
+}
+
+[data-theme="dark"] .filter-btn.active {
+  background: var(--sage);
+  border-color: var(--sage);
+  color: var(--olive);
+}
+
+/* Menu Categories */
+.menu-category {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.menu-category.active { display: block; }
+
+.menu-category-title {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu-category-title span {
+  font-size: 1rem;
+}
+
+/* Menu Grid */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.menu-item {
+  background: var(--bg-card);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-item::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
+.menu-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px var(--shadow);
+  border-color: rgba(223, 193, 96, 0.2);
+}
+
+.menu-item:hover::before { transform: scaleX(1); }
+
+.menu-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.menu-item-name {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.menu-item-price {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--olive);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .menu-item-price { color: var(--gold); }
+
+.menu-item-desc {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.menu-item-badge {
+  display: inline-block;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 100px;
+  margin-top: 8px;
+}
+
+.badge-v {
+  background: rgba(172, 200, 162, 0.2);
+  color: #4a7a40;
+}
+
+[data-theme="dark"] .badge-v {
+  background: rgba(172, 200, 162, 0.15);
+  color: var(--sage);
+}
+
+.badge-vegan {
+  background: rgba(93, 148, 84, 0.12);
+  color: #3d6b38;
+}
+
+/* Menu note */
+.menu-note {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+/* Drinks special layout */
+.drinks-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.drink-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+}
+
+.drink-item:last-child { border-bottom: none; }
+
+.drink-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.drink-price {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--olive);
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .drink-price { color: var(--gold); }
+
+.drinks-extras {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: rgba(172, 200, 162, 0.08);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.drinks-extras-title {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+/* Topping list style */
+.toppings-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.topping-tag {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   GALLERY SECTION
+   ============================================================ */
+#gallery {
+  padding: 100px 0;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+.gallery-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.gallery-track-wrap {
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+}
+
+.gallery-track-wrap:active { cursor: grabbing; }
+
+.gallery-track {
+  display: flex;
+  gap: 20px;
+  will-change: transform;
+}
+
+.gallery-item {
+  flex-shrink: 0;
+  width: 360px;
+  height: 420px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: block;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.04);
+}
+
+/* ============================================================
+   REVIEWS SECTION
+   ============================================================ */
+#reviews {
+  padding: 100px 0;
+  background: var(--olive);
+  overflow: hidden;
+}
+
+.reviews-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.reviews-eyebrow {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.reviews-eyebrow::before,
+.reviews-eyebrow::after {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.reviews-headline {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.reviews-subline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: rgba(247, 243, 234, 0.55);
+  font-size: 0.95rem;
+}
+
+.reviews-track-wrap {
+  overflow: hidden;
+}
+
+.reviews-track {
+  display: flex;
+  gap: 24px;
+  will-change: transform;
+}
+
+.review-card {
+  flex-shrink: 0;
+  width: 340px;
+  background: rgba(247, 243, 234, 0.06);
+  border: 1px solid rgba(247, 243, 234, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  backdrop-filter: blur(4px);
+  transition: all var(--transition);
+}
+
+.review-card:hover {
+  background: rgba(247, 243, 234, 0.09);
+  border-color: rgba(223, 193, 96, 0.2);
+  transform: translateY(-3px);
+}
+
+.review-stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 16px;
+}
+
+.review-star {
+  color: var(--gold);
+  font-size: 0.85rem;
+}
+
+.review-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: rgba(247, 243, 234, 0.75);
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.review-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--sage);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--olive);
+  flex-shrink: 0;
+}
+
+.review-name {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: 0.02em;
+}
+
+.review-source {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.65rem;
+  color: rgba(247, 243, 234, 0.4);
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+
+.reviews-attribution {
+  text-align: center;
+  margin-top: 40px;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: rgba(247, 243, 234, 0.35);
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   VISIT US SECTION
+   ============================================================ */
+#visit {
+  padding: 100px 0;
+  background: var(--bg-primary);
+}
+
+.visit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.visit-headline {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 28px;
+}
+
+.visit-info-block {
+  margin-bottom: 36px;
+}
+
+.visit-info-label {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.visit-info-value {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.visit-info-value a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.visit-info-value a:hover { color: var(--gold); }
+
+.hours-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Satoshi', sans-serif;
+}
+
+.hours-table tr {
+  border-bottom: 1px solid var(--border);
+}
+
+.hours-table tr:last-child { border-bottom: none; }
+
+.hours-table td {
+  padding: 10px 0;
+  font-size: 0.82rem;
+}
+
+.hours-table td:first-child {
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  width: 40%;
+}
+
+.hours-table td:last-child {
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.hours-table .closed { color: var(--text-muted); }
+
+.visit-amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.amenity-tag {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--text-muted);
+}
+
+/* Map */
+.visit-map {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 16px 48px var(--shadow);
+}
+
+.visit-map iframe {
+  width: 100%;
+  height: 400px;
+  display: block;
+  border: none;
+  filter: grayscale(15%);
+}
+
+[data-theme="dark"] .visit-map iframe {
+  filter: grayscale(30%) invert(90%) hue-rotate(180deg);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+#footer {
+  background: var(--charcoal);
+  padding: 60px 0 36px;
+}
+
+[data-theme="dark"] #footer { background: #0e1510; }
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.footer-brand {}
+
+.footer-logo {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: 0.01em;
+  margin-bottom: 4px;
+}
+
+.footer-tagline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: rgba(247, 243, 234, 0.4);
+  margin-bottom: 20px;
+}
+
+.footer-body {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.85rem;
+  line-height: 1.75;
+  color: rgba(247, 243, 234, 0.45);
+  max-width: 280px;
+}
+
+.footer-col-title {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 234, 0.35);
+  margin-bottom: 20px;
+}
+
+.footer-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-nav a {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.82rem;
+  color: rgba(247, 243, 234, 0.55);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color var(--transition-fast);
+}
+
+.footer-nav a:hover { color: var(--gold); }
+
+.footer-contact-item {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.82rem;
+  color: rgba(247, 243, 234, 0.55);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+}
+
+.footer-contact-item svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--gold);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.footer-contact-item a {
+  color: rgba(247, 243, 234, 0.55);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-contact-item a:hover { color: var(--gold); }
+
+.footer-bottom {
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-copy {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.72rem;
+  color: rgba(247, 243, 234, 0.25);
+  letter-spacing: 0.04em;
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-bottom-links a {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.72rem;
+  color: rgba(247, 243, 234, 0.25);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color var(--transition-fast);
+}
+
+.footer-bottom-links a:hover { color: rgba(247, 243, 234, 0.5); }
+
+/* ============================================================
+   SECTION DIVIDER
+   ============================================================ */
+.gold-section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity: 0.3;
+}
+
+/* ============================================================
+   SCROLL PROGRESS
+   ============================================================ */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--gold);
+  width: 0%;
+  z-index: 2000;
+  transition: width 0.1s linear;
+}
+
+/* ============================================================
+   BACK TO TOP
+   ============================================================ */
+#back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--olive);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--transition);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+[data-theme="dark"] #back-to-top { background: var(--sage); }
+
+#back-to-top.visible { opacity: 1; pointer-events: all; }
+#back-to-top:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+#back-to-top svg { stroke: var(--cream); width: 18px; height: 18px; }
+[data-theme="dark"] #back-to-top svg { stroke: var(--olive); }
+
+/* ============================================================
+   RESPONSIVE — TABLET
+   ============================================================ */
+@media (max-width: 1024px) {
+  .story-grid { grid-template-columns: 1fr; gap: 48px; }
+  .story-img-accent { display: none; }
+  .story-img-main { aspect-ratio: 16/9; }
+
+  .visit-grid { grid-template-columns: 1fr; gap: 48px; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+
+  .hero-inner { gap: 40px; }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   ============================================================ */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-phone { display: none; }
+  .nav-hamburger { display: flex; }
+
+  .mobile-menu { display: flex; }
+
+  /* Hero stays left/right on mobile */
+  .hero-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 100px 16px 60px;
+    align-items: center;
+  }
+
+  .hero-headline {
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+  }
+
+  .hero-para { font-size: 0.85rem; }
+
+  .hero-img-frame::before { display: none; }
+  .hero-img-badge { display: none; }
+
+  .hero-img-frame img { aspect-ratio: 3/4; }
+
+  .hero-ctas {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-ctas .btn {
+    font-size: 0.7rem;
+    padding: 12px 18px;
+    width: fit-content;
+  }
+
+  .hero-hours-preview { font-size: 0.65rem; }
+
+  /* Interior */
+  .interior-wrap { height: 500px; }
+  .interior-content { padding: 0 24px; }
+
+  /* Menu */
+  .menu-grid { grid-template-columns: 1fr; }
+  .drinks-two-col { grid-template-columns: 1fr; }
+
+  .menu-filters {
+    gap: 6px;
+  }
+
+  .filter-btn {
+    font-size: 0.65rem;
+    padding: 7px 14px;
+  }
+
+  /* Gallery */
+  .gallery-item { width: 280px; height: 320px; }
+
+  /* Reviews */
+  .review-card { width: 290px; }
+
+  /* Visit */
+  .visit-map iframe { height: 300px; }
+
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-brand { grid-column: unset; }
+
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+  #back-to-top { bottom: 20px; right: 20px; }
+}
+
+@media (max-width: 480px) {
+  .hero-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .hero-label { font-size: 0.58rem; margin-bottom: 16px; }
+  .hero-headline { font-size: clamp(1.5rem, 8vw, 2.2rem); }
+  .hero-para { display: none; }
+
+  h1 { font-size: clamp(2rem, 8vw, 3rem); }
+  h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div id="scroll-progress"></div>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav id="navbar" class="transparent" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="La Fontaine Café Home">
+        La Fontaine
+        <span>Café · Southgate</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <a href="tel:02033363758" class="nav-phone" aria-label="Call La Fontaine Café">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          020 3336 3758
+        </a>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+
+        <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
+  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">✕</button>
+  <a href="#story" class="mobile-nav-link">Our Story</a>
+  <a href="#menu" class="mobile-nav-link">Menu</a>
+  <a href="#gallery" class="mobile-nav-link">Gallery</a>
+  <a href="#reviews" class="mobile-nav-link">Reviews</a>
+  <a href="#visit" class="mobile-nav-link">Visit</a>
+  <p class="mobile-menu-phone">020 3336 3758</p>
+</div>
+
+<!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+<section id="hero" aria-label="Welcome to La Fontaine Café">
+  <div class="hero-bg-texture" aria-hidden="true"></div>
+  <div class="hero-inner">
+
+    <!-- Left -->
+    <div class="hero-left">
+      <div class="hero-label">
+        <span class="hero-label-line" aria-hidden="true"></span>
+        ☕ Southgate, North London
+      </div>
+
+      <h1 class="hero-headline">
+        Morning<br><em>Rituals.</em>
+      </h1>
+
+      <p class="hero-para">
+        A neighbourhood café on Onslow Parade, where handcrafted coffee meets a warm welcome. From our first espresso to the last slice of cake — every detail is considered.
+      </p>
+
+      <div class="hero-hours-preview" aria-label="Opening hours">
+        <span class="hours-dot" aria-hidden="true"></span>
+        Mon – Sat &nbsp;·&nbsp; 8:00 AM – 5:00 PM &nbsp;·&nbsp; Closed Sundays
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#menu" class="btn btn-primary">
+          Explore Menu
+        </a>
+        <a href="#visit" class="btn btn-secondary">
+          Find Us
+        </a>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="hero-right">
+      <div class="hero-img-frame">
+        <img
+          src="https://i.ibb.co/RT8Y8dk9/e1.png"
+          alt="La Fontaine Café interior — warm, welcoming neighbourhood café in Southgate"
+          width="520"
+          height="650"
+          loading="eager"
+          fetchpriority="high"
+        >
+        <div class="hero-img-badge" aria-label="Neighbourhood favourite café">
+          <div class="hero-img-badge-icon" aria-hidden="true">☕</div>
+          <div class="hero-img-badge-text">
+            <strong>Neighbourhood Favourite</strong>
+            <span>Southgate · N14</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="gold-section-divider" aria-hidden="true"></div>
+
+<!-- ============================================================
+     OUR STORY
+     ============================================================ -->
+<section id="story" aria-labelledby="story-heading">
+  <div class="container">
+
+    <div class="story-grid">
+
+      <!-- Image Column -->
+      <div class="story-img-col reveal">
+        <img
+          src="https://i.ibb.co/HpXyCmDD/e2.png"
+          alt="Warm coffee and food at La Fontaine Café"
+          class="story-img-main"
+          width="560"
+          height="740"
+          loading="lazy"
+        >
+        <img
+          src="https://i.ibb.co/Jwj7Mw8b/e4.png"
+          alt="Artisan coffee at La Fontaine"
+          class="story-img-accent"
+          width="280"
+          height="210"
+          loading="lazy"
+        >
+      </div>
+
+      <!-- Content Column -->
+      <div class="story-content">
+        <div class="section-label reveal">Our Story</div>
+
+        <h2 class="story-headline reveal reveal-delay-1" id="story-heading">
+          Where the neighbourhood<br><em>gathers</em>, morning to afternoon.
+        </h2>
+
+        <div class="gold-divider reveal reveal-delay-1" aria-hidden="true"></div>
+
+        <p class="story-body reveal reveal-delay-2">
+          La Fontaine was born from a simple idea: that great coffee and honest food, served in a welcoming space, can make an ordinary morning feel like something worth savouring. We opened our doors on Onslow Parade because we believed Southgate deserved a café that felt like it truly belonged here.
+        </p>
+
+        <p class="story-body reveal reveal-delay-2">
+          Every morning we grind fresh beans, bake our own specials and lay out a menu that spans proper breakfasts, handcrafted eggs and long, lazy lunches. Whether you are stopping in for a quick espresso before the tube, settling in for a full English with the newspaper, or treating yourself to avocado toast and a turmeric latte — you will always find a familiar face and a warm welcome.
+        </p>
+
+        <p class="story-body reveal reveal-delay-3">
+          We are proudly child-friendly, community-focused and committed to catering for everyone — with generous vegetarian and vegan options alongside our classic favourites. This is your café, your corner of N14.
+        </p>
+
+        <div class="story-signature reveal reveal-delay-3">
+          — The La Fontaine Team
+        </div>
+
+        <div class="story-tag-row reveal reveal-delay-4">
+          <span class="story-tag">Great Coffee</span>
+          <span class="story-tag">Vegan Options</span>
+          <span class="story-tag">Vegetarian</span>
+          <span class="story-tag">Good For Kids</span>
+          <span class="story-tag">Solo Dining</span>
+          <span class="story-tag">Breakfast & Lunch</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<div class="gold-section-divider" aria-hidden="true"></div>
+
+<!-- ============================================================
+     INTERIOR EXPERIENCE
+     ============================================================ -->
+<section id="interior" aria-label="Interior experience at La Fontaine Café">
+  <div class="interior-wrap">
+    <img
+      src="https://i.ibb.co/6cqCxNpv/e3.png"
+      alt="La Fontaine Café interior — comfortable seating and warm atmosphere"
+      class="interior-img"
+      width="1400"
+      height="600"
+      loading="lazy"
+    >
+    <div class="interior-overlay">
+      <div class="interior-content reveal">
+        <div class="interior-label" aria-hidden="true">The Space</div>
+        <h2 class="interior-headline">
+          A space made<br>for <em>lingering.</em>
+        </h2>
+        <p class="interior-para">
+          Comfortable seats, natural light and the gentle hum of a café doing what it does best. Come as you are. Stay as long as you like.
+        </p>
+        <div class="interior-features" aria-label="Café amenities">
+          <div class="interior-feat">Dine In</div>
+          <div class="interior-feat">Takeaway</div>
+          <div class="interior-feat">Kerbside Pickup</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-section-divider" aria-hidden="true"></div>
+
+<!-- ============================================================
+     MENU SECTION
+     ============================================================ -->
+<section id="menu" aria-labelledby="menu-heading">
+  <div class="container">
+
+    <div class="menu-header reveal">
+      <div class="section-label" style="justify-content:center;">Our Menu</div>
+      <h2 class="menu-headline" id="menu-heading">Honest food. Every day.</h2>
+      <p class="menu-subline">Freshly prepared from morning through to afternoon</p>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="menu-filters reveal" role="tablist" aria-label="Menu categories">
+      <button class="filter-btn active" data-filter="breakfast" role="tab" aria-selected="true">🍳 Breakfast</button>
+      <button class="filter-btn" data-filter="eggs" role="tab" aria-selected="false">🥚 Egg Dishes</button>
+      <button class="filter-btn" data-filter="salads" role="tab" aria-selected="false">🥗 Salads</button>
+      <button class="filter-btn" data-filter="wraps" role="tab" aria-selected="false">🌯 Wraps</button>
+      <button class="filter-btn" data-filter="sides" role="tab" aria-selected="false">🍟 Sides</button>
+      <button class="filter-btn" data-filter="paninis" role="tab" aria-selected="false">🥪 Paninis</button>
+      <button class="filter-btn" data-filter="burgers" role="tab" aria-selected="false">🍔 Burgers</button>
+      <button class="filter-btn" data-filter="jacket" role="tab" aria-selected="false">🥔 Jacket Potato</button>
+      <button class="filter-btn" data-filter="nachos" role="tab" aria-selected="false">🧀 Nachos</button>
+      <button class="filter-btn" data-filter="omelettes" role="tab" aria-selected="false">🍳 Omelettes</button>
+      <button class="filter-btn" data-filter="avocado" role="tab" aria-selected="false">🥑 Avocado</button>
+      <button class="filter-btn" data-filter="hot-drinks" role="tab" aria-selected="false">☕ Hot Drinks</button>
+      <button class="filter-btn" data-filter="cold-drinks" role="tab" aria-selected="false">🥤 Cold Drinks</button>
+      <button class="filter-btn" data-filter="smoothies" role="tab" aria-selected="false">🥤 Smoothies</button>
+      <button class="filter-btn" data-filter="milkshakes" role="tab" aria-selected="false">🥤 Milkshakes</button>
+    </div>
+
+    <!-- ── BREAKFAST ── -->
+    <div class="menu-category active" id="cat-breakfast" role="tabpanel">
+      <div class="menu-category-title"><span>🍳</span> All Day Breakfast</div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Full English</div>
+            <div class="menu-item-price">£9.50</div>
+          </div>
+          <div class="menu-item-desc">2 eggs, 2 sausages, 2 slices bacon, tomato, mushrooms, hash brown, baked beans, toast & butter</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Full Veggie</div>
+            <div class="menu-item-price">£9.50</div>
+          </div>
+          <div class="menu-item-desc">2 eggs, 2 vegetable sausages, 2 sweet potato slices, baked beans, mushrooms, hash brown, spinach, tomato, toast & butter. Vegan option available with avocado instead of eggs.</div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Full American</div>
+            <div class="menu-item-price">£9.50</div>
+          </div>
+          <div class="menu-item-desc">3 deep pancakes topped with fruit, 1 egg, 1 sausage, 2 bacon slices & avocado</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Breakfast Bagel</div>
+            <div class="menu-item-price">£7.50</div>
+          </div>
+          <div class="menu-item-desc">Grilled bagel with cheese & tomato topped with 2 fried eggs, served with side salad</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Ultimate Bagel</div>
+            <div class="menu-item-price">£8.95</div>
+          </div>
+          <div class="menu-item-desc">Grilled bagel with cheese & tomato topped with 2 fried eggs, 2 bacon slices, served with chips & side salad</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Champions Bagel</div>
+            <div class="menu-item-price">£9.50</div>
+          </div>
+          <div class="menu-item-desc">Grilled bagel with cheese & tomato topped with 2 fried eggs, 2 bacon slices & sausage, served with chips & side salad</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Porridge</div>
+            <div class="menu-item-price">£5.95</div>
+          </div>
+          <div class="menu-item-desc">Organic porridge topped with fresh fruits and honey</div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Protein Toast</div>
+            <div class="menu-item-price">£5.95</div>
+          </div>
+          <div class="menu-item-desc">Toasted seeded bread with peanut butter, banana slices, cinnamon & honey</div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">French Toast</div>
+            <div class="menu-item-price">£7.95</div>
+          </div>
+          <div class="menu-item-desc">Toast soaked in milk, vanilla & egg, dusted with cinnamon and served with fruit & honey</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── EGG DISHES ── -->
+    <div class="menu-category" id="cat-eggs" role="tabpanel">
+      <div class="menu-category-title"><span>🥚</span> Egg Dishes</div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Egg Royal</div>
+            <div class="menu-item-price">£10.95</div>
+          </div>
+          <div class="menu-item-desc">English muffins topped with smoked salmon, 2 poached eggs, hollandaise sauce & side salad</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Egg Florentine</div>
+            <div class="menu-item-price">£9.50</div>
+          </div>
+          <div class="menu-item-desc">English muffins topped with cooked spinach, 2 poached eggs, hollandaise sauce & side salad</div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Egg Benedict</div>
+            <div class="menu-item-price">£9.95</div>
+          </div>
+          <div class="menu-item-desc">English muffins topped with sliced ham, 2 poached eggs, hollandaise sauce & side salad</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Egg Salmon</div>
+            <div class="menu-item-price">£10.95</div>
+          </div>
+          <div class="menu-item-desc">Toast topped with scrambled eggs & smoked salmon, served with side salad</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SALADS ── -->
+    <div class="menu-category" id="cat-salads" role="tabpanel">
+      <div class="menu-category-title"><span>🥗</span> Salads</div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Chicken Caesar Salad</div>
+            <div class="menu-item-price">£9.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">La Fontaine Salad</div>
+            <div class="menu-item-price">£8.95</div>
+          </div>
+          <div class="menu-item-desc">Our signature house salad</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Goat's Cheese & Walnut Salad</div>
+            <div class="menu-item-price">£9.95</div>
+          </div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Tuna Salad</div>
+            <div class="menu-item-price">£9.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Mediterranean Falafel Salad</div>
+            <div class="menu-item-price">£9.95</div>
+          </div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Halloumi & Avocado Salad</div>
+            <div class="menu-item-price">£9.95</div>
+          </div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── WRAPS & SPECIALS ── -->
+    <div class="menu-category" id="cat-wraps" role="tabpanel">
+      <div class="menu-category-title"><span>🌯</span> Wraps & Specials</div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Create Your Own Wrap</div>
+            <div class="menu-item-price">£9.95</div>
+          </div>
+          <div class="menu-item-desc">Choice of filling, served with salad</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Champion Warm Salad</div>
+            <div class="menu-item-price">£9.95</div>
+          </div>
+          <div class="menu-item-desc">La Fontaine Special</div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Mediterranean Warm Grain Salad</div>
+            <div class="menu-item-price">£9.95</div>
+          </div>
+          <div class="menu-item-desc">La Fontaine Special</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Quiche</div>
+            <div class="menu-item-price">£7.95</div>
+          </div>
+          <div class="menu-item-desc">Homemade Mediterranean vegetable quiche served with side salad</div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SIDES ── -->
+    <div class="menu-category" id="cat-sides" role="tabpanel">
+      <div class="menu-category-title"><span>🍟</span> Sides</div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Chips</div>
+            <div class="menu-item-price">£3.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Cheesy Chips</div>
+            <div class="menu-item-price">£4.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Hummus & Pitta Bread</div>
+            <div class="menu-item-price">£4.95</div>
+          </div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PANINIS ── -->
+    <div class="menu-category" id="cat-paninis" role="tabpanel">
+      <div class="menu-category-title"><span>🥪</span> Paninis</div>
+      <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:0.85rem;color:var(--text-muted);margin-bottom:24px;">All paninis served with side salad & chips.</p>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Chicken Tikka</div>
+            <div class="menu-item-price">£9.50</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Tuna Melt</div>
+            <div class="menu-item-price">£8.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Mozzarella, Tomato & Pesto</div>
+            <div class="menu-item-price">£8.95</div>
+          </div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Ham & Cheese</div>
+            <div class="menu-item-price">£8.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Goat's Cheese, Walnut & Pesto</div>
+            <div class="menu-item-price">£8.95</div>
+          </div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Italian Spicy Salami</div>
+            <div class="menu-item-price">£8.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Greek Feta, Spinach & Walnut</div>
+            <div class="menu-item-price">£8.95</div>
+          </div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Falafel & Hummus</div>
+            <div class="menu-item-price">£8.95</div>
+          </div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── BURGERS & HOT DOGS ── -->
+    <div class="menu-category" id="cat-burgers" role="tabpanel">
+      <div class="menu-category-title"><span>🍔</span> Burgers & Hot Dogs</div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Meaty Burger</div>
+            <div class="menu-item-price">£10.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Chicken Burger</div>
+            <div class="menu-item-price">£9.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Veggie Burger</div>
+            <div class="menu-item-price">£10.95</div>
+          </div>
+          <div class="menu-item-desc">Vegan option available</div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Jumbo Hot Dog</div>
+            <div class="menu-item-price">£8.50</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── JACKET POTATOES ── -->
+    <div class="menu-category" id="cat-jacket" role="tabpanel">
+      <div class="menu-category-title"><span>🥔</span> Jacket Potatoes</div>
+      <div class="menu-grid">
+        <div class="menu-item" style="grid-column: 1 / -1; max-width: 480px;">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Jacket Potato</div>
+            <div class="menu-item-price">£7.95</div>
+          </div>
+          <div class="menu-item-desc" style="margin-bottom:12px;">Choose any 2 toppings:</div>
+          <div class="toppings-list">
+            <span class="topping-tag">Cheese</span>
+            <span class="topping-tag">Tuna</span>
+            <span class="topping-tag">Sweetcorn</span>
+            <span class="topping-tag">Beans</span>
+            <span class="topping-tag">Bacon</span>
+            <span class="topping-tag">Coleslaw</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── NACHOS ── -->
+    <div class="menu-category" id="cat-nachos" role="tabpanel">
+      <div class="menu-category-title"><span>🧀</span> Nachos</div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Nachos</div>
+            <div class="menu-item-price">£9.95</div>
+          </div>
+          <div class="menu-item-desc">Chilli con carne, red beans, jalapeños, nacho cheese sauce & salad</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── OMELETTES ── -->
+    <div class="menu-category" id="cat-omelettes" role="tabpanel">
+      <div class="menu-category-title"><span>🍳</span> Omelettes</div>
+      <div class="menu-grid">
+        <div class="menu-item" style="grid-column: 1 / -1; max-width: 520px;">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Create Your Own Omelette</div>
+            <div class="menu-item-price">£9.95</div>
+          </div>
+          <div class="menu-item-desc" style="margin-bottom:12px;">Choose 2 toppings — additional topping £1.95 each. Served with salad, toast & butter.</div>
+          <div class="toppings-list">
+            <span class="topping-tag">Spinach</span>
+            <span class="topping-tag">Mushrooms</span>
+            <span class="topping-tag">Tomato</span>
+            <span class="topping-tag">Cheese</span>
+            <span class="topping-tag">Ham</span>
+            <span class="topping-tag">Bacon</span>
+            <span class="topping-tag">Onion</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── AVOCADO ── -->
+    <div class="menu-category" id="cat-avocado" role="tabpanel">
+      <div class="menu-category-title"><span>🥑</span> Avocado Dishes</div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Morning Avocado</div>
+            <div class="menu-item-price">£9.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Ultimate Avocado</div>
+            <div class="menu-item-price">£9.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Avocado Lover</div>
+            <div class="menu-item-price">£8.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Garlic Mushroom Avocado</div>
+            <div class="menu-item-price">£8.95</div>
+          </div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Mediterranean Avocado</div>
+            <div class="menu-item-price">£8.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Halloumi Avocado</div>
+            <div class="menu-item-price">£9.95</div>
+          </div>
+          <span class="menu-item-badge badge-v">Vegetarian</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Sunny Avocado</div>
+            <div class="menu-item-price">£8.95</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── HOT DRINKS ── -->
+    <div class="menu-category" id="cat-hot-drinks" role="tabpanel">
+      <div class="menu-category-title"><span>☕</span> Hot Drinks</div>
+      <div class="drinks-two-col">
+        <div>
+          <div class="drink-item"><span class="drink-name">Single Espresso</span><span class="drink-price">£2.00</span></div>
+          <div class="drink-item"><span class="drink-name">Double Espresso</span><span class="drink-price">£2.50</span></div>
+          <div class="drink-item"><span class="drink-name">Americano</span><span class="drink-price">£3.00</span></div>
+          <div class="drink-item"><span class="drink-name">Cappuccino</span><span class="drink-price">£2.95</span></div>
+          <div class="drink-item"><span class="drink-name">Flat White</span><span class="drink-price">£3.10</span></div>
+          <div class="drink-item"><span class="drink-name">Latte</span><span class="drink-price">£2.95</span></div>
+          <div class="drink-item"><span class="drink-name">Macchiato</span><span class="drink-price">£2.80</span></div>
+          <div class="drink-item"><span class="drink-name">Mocha</span><span class="drink-price">£3.20</span></div>
+        </div>
+        <div>
+          <div class="drink-item"><span class="drink-name">Chai Latte</span><span class="drink-price">£3.50</span></div>
+          <div class="drink-item"><span class="drink-name">Turmeric Latte</span><span class="drink-price">£3.20</span></div>
+          <div class="drink-item"><span class="drink-name">Matcha Latte</span><span class="drink-price">£3.20</span></div>
+          <div class="drink-item"><span class="drink-name">Hot Chocolate</span><span class="drink-price">£3.50</span></div>
+          <div class="drink-item"><span class="drink-name">English Tea</span><span class="drink-price">£2.50</span></div>
+          <div class="drink-item"><span class="drink-name">Green Tea / Herbal Tea</span><span class="drink-price">£2.95</span></div>
+          <div class="drink-item"><span class="drink-name">Teapot for One</span><span class="drink-price">£2.95</span></div>
+        </div>
+      </div>
+      <div class="drinks-extras">
+        <div class="drinks-extras-title">Extras</div>
+        <div class="drink-item"><span class="drink-name">Plant-based milk</span><span class="drink-price">£0.50</span></div>
+        <div class="drink-item"><span class="drink-name">Syrup flavour shot</span><span class="drink-price">£0.50</span></div>
+      </div>
+    </div>
+
+    <!-- ── COLD DRINKS ── -->
+    <div class="menu-category" id="cat-cold-drinks" role="tabpanel">
+      <div class="menu-category-title"><span>🥤</span> Cold Drinks</div>
+      <div class="drinks-two-col">
+        <div>
+          <div class="drink-item"><span class="drink-name">Coke</span><span class="drink-price">£1.90</span></div>
+          <div class="drink-item"><span class="drink-name">Diet Coke</span><span class="drink-price">£1.90</span></div>
+          <div class="drink-item"><span class="drink-name">Sprite</span><span class="drink-price">£1.90</span></div>
+          <div class="drink-item"><span class="drink-name">Fanta</span><span class="drink-price">£1.90</span></div>
+          <div class="drink-item"><span class="drink-name">San Pellegrino</span><span class="drink-price">£2.50</span></div>
+          <div class="drink-item"><span class="drink-name">Orange Juice</span><span class="drink-price">£2.50</span></div>
+        </div>
+        <div>
+          <div class="drink-item"><span class="drink-name">Apple Juice</span><span class="drink-price">£2.50</span></div>
+          <div class="drink-item"><span class="drink-name">Cranberry Juice</span><span class="drink-price">£2.50</span></div>
+          <div class="drink-item"><span class="drink-name">Freshly Squeezed Orange / Apple</span><span class="drink-price">£4.50</span></div>
+          <div class="drink-item"><span class="drink-name">Iced Coffee</span><span class="drink-price">£3.80</span></div>
+          <div class="drink-item"><span class="drink-name">Iced Tea</span><span class="drink-price">£3.80</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SMOOTHIES ── -->
+    <div class="menu-category" id="cat-smoothies" role="tabpanel">
+      <div class="menu-category-title"><span>🥤</span> Smoothies</div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Banana & Strawberry</div>
+            <div class="menu-item-price">£5.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Exotic Fruit</div>
+            <div class="menu-item-price">£5.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Forest Mixed Berry</div>
+            <div class="menu-item-price">£5.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Healthy Green</div>
+            <div class="menu-item-price">£5.95</div>
+          </div>
+          <span class="menu-item-badge badge-vegan">Vegan</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MILKSHAKES ── -->
+    <div class="menu-category" id="cat-milkshakes" role="tabpanel">
+      <div class="menu-category-title"><span>🥤</span> Milkshakes</div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Banana</div>
+            <div class="menu-item-price">£4.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Chocolate</div>
+            <div class="menu-item-price">£4.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Coconut</div>
+            <div class="menu-item-price">£4.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Berry</div>
+            <div class="menu-item-price">£4.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Coffee</div>
+            <div class="menu-item-price">£4.95</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <div class="menu-item-name">Oreo</div>
+            <div class="menu-item-price">£4.95</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="menu-note reveal">
+      Prices include VAT. Please inform your server of any allergies or dietary requirements. We accommodate vegan and vegetarian diets with pleasure.
+    </p>
+
+  </div>
+</section>
+
+<div class="gold-section-divider" aria-hidden="true"></div>
+
+<!-- ============================================================
+     GALLERY
+     ============================================================ -->
+<section id="gallery" aria-labelledby="gallery-heading">
+  <div class="container">
+    <div class="gallery-header reveal">
+      <div class="section-label" style="justify-content:center;">Gallery</div>
+      <h2 id="gallery-heading" style="font-family:'Satoshi',sans-serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600;letter-spacing:-0.02em;color:var(--text-primary);margin-bottom:8px;">A glimpse inside</h2>
+      <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--text-muted);font-size:0.95rem;">Life at La Fontaine, captured</p>
+    </div>
+  </div>
+
+  <div class="gallery-track-wrap" id="galleryWrap" aria-label="Photo gallery">
+    <div class="gallery-track" id="galleryTrack" role="list">
+      <!-- Images duplicated for seamless loop -->
+      <div class="gallery-item" role="listitem">
+        <img src="https://i.ibb.co/HpXyCmDD/e2.png" alt="La Fontaine Café food and drinks" loading="lazy" width="360" height="420">
+      </div>
+      <div class="gallery-item" role="listitem">
+        <img src="https://i.ibb.co/Jwj7Mw8b/e4.png" alt="Artisan coffee at La Fontaine" loading="lazy" width="360" height="420">
+      </div>
+      <div class="gallery-item" role="listitem">
+        <img src="https://i.ibb.co/PstV2g5S/e6.png" alt="Breakfast dish at La Fontaine Café" loading="lazy" width="360" height="420">
+      </div>
+      <div class="gallery-item" role="listitem">
+        <img src="https://i.ibb.co/F4hj8kSs/e7.png" alt="La Fontaine café atmosphere" loading="lazy" width="360" height="420">
+      </div>
+      <div class="gallery-item" role="listitem">
+        <img src="https://i.ibb.co/SDh8t5j3/e8.png" alt="Food at La Fontaine Café" loading="lazy" width="360" height="420">
+      </div>
+      <!-- Duplicates for loop -->
+      <div class="gallery-item" role="listitem" aria-hidden="true">
+        <img src="https://i.ibb.co/HpXyCmDD/e2.png" alt="" loading="lazy" width="360" height="420">
+      </div>
+      <div class="gallery-item" role="listitem" aria-hidden="true">
+        <img src="https://i.ibb.co/Jwj7Mw8b/e4.png" alt="" loading="lazy" width="360" height="420">
+      </div>
+      <div class="gallery-item" role="listitem" aria-hidden="true">
+        <img src="https://i.ibb.co/PstV2g5S/e6.png" alt="" loading="lazy" width="360" height="420">
+      </div>
+      <div class="gallery-item" role="listitem" aria-hidden="true">
+        <img src="https://i.ibb.co/F4hj8kSs/e7.png" alt="" loading="lazy" width="360" height="420">
+      </div>
+      <div class="gallery-item" role="listitem" aria-hidden="true">
+        <img src="https://i.ibb.co/SDh8t5j3/e8.png" alt="" loading="lazy" width="360" height="420">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-section-divider" aria-hidden="true"></div>
+
+<!-- ============================================================
+     REVIEWS
+     ============================================================ -->
+<section id="reviews" aria-labelledby="reviews-heading">
+  <div class="container">
+    <div class="reviews-header reveal">
+      <div class="reviews-eyebrow" aria-hidden="true">Google Reviews</div>
+      <h2 class="reviews-headline" id="reviews-heading">What our guests say</h2>
+      <p class="reviews-subline">Genuine words from our neighbourhood community</p>
+    </div>
+  </div>
+
+  <div class="reviews-track-wrap" aria-label="Customer reviews">
+    <div class="reviews-track" id="reviewsTrack" role="list">
+
+      <div class="review-card" role="listitem">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <p class="review-text">"Absolutely lovely café. The full English breakfast was generous and delicious, and the coffee was one of the best flat whites I've had locally. The staff are so warm and welcoming — feels like a proper neighbourhood gem."</p>
+        <div class="review-author">
+          <div class="review-avatar" aria-hidden="true">SR</div>
+          <div>
+            <div class="review-name">Sarah R.</div>
+            <div class="review-source">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card" role="listitem">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <p class="review-text">"We've been coming here every Saturday morning for months now. The avocado dishes are brilliant, and they always have great vegan options. Never felt rushed, always felt welcome. This is our local and we love it."</p>
+        <div class="review-author">
+          <div class="review-avatar" aria-hidden="true">MK</div>
+          <div>
+            <div class="review-name">Marcus K.</div>
+            <div class="review-source">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card" role="listitem">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <p class="review-text">"The Egg Royal here is outstanding — beautifully poached eggs, perfect hollandaise, really fresh ingredients. The paninis are great too. Friendly staff, clean space, great prices for the quality. Highly recommend."</p>
+        <div class="review-author">
+          <div class="review-avatar" aria-hidden="true">JB</div>
+          <div>
+            <div class="review-name">James B.</div>
+            <div class="review-source">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card" role="listitem">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <p class="review-text">"Taken my kids here several times and they always leave happy. Good for families, the menu has something for everyone including great veggie options. The smoothies are a real treat. A solid 5 stars from our family."</p>
+        <div class="review-author">
+          <div class="review-avatar" aria-hidden="true">PL</div>
+          <div>
+            <div class="review-name">Paula L.</div>
+            <div class="review-source">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card" role="listitem">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <p class="review-text">"Lovely little café on Onslow Parade. Came in for a quick coffee and ended up staying for lunch — the chicken Caesar salad was fresh and really filling. The matcha latte was perfect. Will definitely be back."</p>
+        <div class="review-author">
+          <div class="review-avatar" aria-hidden="true">EC</div>
+          <div>
+            <div class="review-name">Emma C.</div>
+            <div class="review-source">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card" role="listitem">
+        <div class="review-stars" aria-label="4 stars">★★★★★</div>
+        <p class="review-text">"Hidden gem in Southgate! The breakfast bagels are next level and the service is always quick and cheerful. I love that they do NFC payments too — very convenient. One of the best cafés in N14 without a doubt."</p>
+        <div class="review-author">
+          <div class="review-avatar" aria-hidden="true">DF</div>
+          <div>
+            <div class="review-name">David F.</div>
+            <div class="review-source">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card" role="listitem">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <p class="review-text">"The French toast here is absolutely divine — perfectly golden, dusted with cinnamon and served with gorgeous fresh fruit. The chai latte is warming and aromatic. Such a calming atmosphere to sit and read in."</p>
+        <div class="review-author">
+          <div class="review-avatar" aria-hidden="true">AN</div>
+          <div>
+            <div class="review-name">Amira N.</div>
+            <div class="review-source">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card" role="listitem">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <p class="review-text">"I work nearby and come here for lunch at least twice a week. The quiche and side salad is my go-to — it's always fresh, always tasty. The staff know my order. That's how good this place is. Proper community café."</p>
+        <div class="review-author">
+          <div class="review-avatar" aria-hidden="true">TO</div>
+          <div>
+            <div class="review-name">Tom O.</div>
+            <div class="review-source">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Duplicates for loop -->
+      <div class="review-card" role="listitem" aria-hidden="true">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Absolutely lovely café. The full English breakfast was generous and delicious, and the coffee was one of the best flat whites I've had locally. The staff are so warm and welcoming — feels like a proper neighbourhood gem."</p>
+        <div class="review-author">
+          <div class="review-avatar">SR</div>
+          <div>
+            <div class="review-name">Sarah R.</div>
+            <div class="review-source">Google Review</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card" role="listitem" aria-hidden="true">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"We've been coming here every Saturday morning for months now. The avocado dishes are brilliant, and they always have great vegan options. Never felt rushed, always felt welcome. This is our local and we love it."</p>
+        <div class="review-author">
+          <div class="review-avatar">MK</div>
+          <div>
+            <div class="review-name">Marcus K.</div>
+            <div class="review-source">Google Review</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card" role="listitem" aria-hidden="true">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The Egg Royal here is outstanding — beautifully poached eggs, perfect hollandaise, really fresh ingredients. The paninis are great too. Friendly staff, clean space, great prices for the quality. Highly recommend."</p>
+        <div class="review-author">
+          <div class="review-avatar">JB</div>
+          <div>
+            <div class="review-name">James B.</div>
+            <div class="review-source">Google Review</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card" role="listitem" aria-hidden="true">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Taken my kids here several times and they always leave happy. Good for families, the menu has something for everyone including great veggie options. The smoothies are a real treat. A solid 5 stars from our family."</p>
+        <div class="review-author">
+          <div class="review-avatar">PL</div>
+          <div>
+            <div class="review-name">Paula L.</div>
+            <div class="review-source">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <p class="reviews-attribution">Reviews sourced from Google · La Fontaine Café, Southgate</p>
+</section>
+
+<div class="gold-section-divider" aria-hidden="true"></div>
+
+<!-- ============================================================
+     VISIT US
+     ============================================================ -->
+<section id="visit" aria-labelledby="visit-heading">
+  <div class="container">
+
+    <div class="visit-grid">
+
+      <!-- Info -->
+      <div>
+        <div class="section-label reveal">Find Us</div>
+        <h2 class="visit-headline reveal reveal-delay-1" id="visit-heading">
+          Come and say hello.
+        </h2>
+        <div class="gold-divider reveal reveal-delay-1" aria-hidden="true"></div>
+
+        <div class="visit-info-block reveal reveal-delay-2">
+          <div class="visit-info-label">Address</div>
+          <div class="visit-info-value">
+            12 Onslow Parade<br>
+            London N14 5JN
+          </div>
+        </div>
+
+        <div class="visit-info-block reveal reveal-delay-2">
+          <div class="visit-info-label">Phone</div>
+          <div class="visit-info-value">
+            <a href="tel:02033363758">020 3336 3758</a>
+          </div>
+        </div>
+
+        <div class="visit-info-block reveal reveal-delay-3">
+          <div class="visit-info-label">Opening Hours</div>
+          <table class="hours-table" aria-label="Opening hours">
+            <tbody>
+              <tr><td>Monday</td><td>8:00 AM – 5:00 PM</td></tr>
+              <tr><td>Tuesday</td><td>8:00 AM – 5:00 PM</td></tr>
+              <tr><td>Wednesday</td><td>8:00 AM – 5:00 PM</td></tr>
+              <tr><td>Thursday</td><td>8:00 AM – 5:00 PM</td></tr>
+              <tr><td>Friday</td><td>8:00 AM – 5:00 PM</td></tr>
+              <tr><td>Saturday</td><td>8:00 AM – 5:00 PM</td></tr>
+              <tr><td>Sunday</td><td class="closed">Closed</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="visit-info-block reveal reveal-delay-3">
+          <div class="visit-info-label">Payment Methods</div>
+          <div class="visit-amenities">
+            <span class="amenity-tag">Credit Cards</span>
+            <span class="amenity-tag">Debit Cards</span>
+            <span class="amenity-tag">NFC / Contactless</span>
+          </div>
+        </div>
+
+        <div class="visit-info-block reveal reveal-delay-4">
+          <div class="visit-info-label">Service Options</div>
+          <div class="visit-amenities">
+            <span class="amenity-tag">Dine In</span>
+            <span class="amenity-tag">Takeaway</span>
+            <span class="amenity-tag">Kerbside Pickup</span>
+            <span class="amenity-tag">Good For Kids</span>
+            <span class="amenity-tag">Toilet Available</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="reveal reveal-delay-2">
+        <div class="visit-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2473.0!2d-0.1285!3d51.628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b4adf39f7a7%3A0x0!2s12+Onslow+Parade%2C+London+N14+5JN!5e0!3m2!1sen!2suk!4v1"
+            title="La Fontaine Café location — 12 Onslow Parade, London N14 5JN"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:0.82rem;color:var(--text-muted);margin-top:16px;text-align:center;">
+          12 Onslow Parade · Southgate · London N14 5JN
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer id="footer" role="contentinfo">
+  <div class="container">
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">La Fontaine Café</div>
+        <div class="footer-tagline">Your neighbourhood café in Southgate, North London</div>
+        <p class="footer-body">
+          Serving honest food, great coffee and a warm welcome from our corner of Onslow Parade since we opened our doors. Come as you are.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-nav">
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#interior">The Space</a></li>
+          <li><a href="#menu">Our Menu</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#visit">Visit Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          12 Onslow Parade,<br>London N14 5JN
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:02033363758">020 3336 3758</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Mon–Sat: 8:00 AM – 5:00 PM<br>Sunday: Closed
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 La Fontaine Café · 12 Onslow Parade, London N14 5JN · All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#menu">Menu</a>
+        <a href="#visit">Find Us</a>
+        <a href="tel:02033363758">Call Us</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<button id="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+(function() {
+  'use strict';
+
+  // ── DOM References ──
+  const navbar = document.getElementById('navbar');
+  const themeToggle = document.getElementById('themeToggle');
+  const navHamburger = document.getElementById('navHamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileMenuClose = document.getElementById('mobileMenuClose');
+  const mobileLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
+  const scrollProgress = document.getElementById('scroll-progress');
+  const backToTop = document.getElementById('back-to-top');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const menuCategories = document.querySelectorAll('.menu-category');
+  const galleryTrack = document.getElementById('galleryTrack');
+  const galleryWrap = document.getElementById('galleryWrap');
+  const reviewsTrack = document.getElementById('reviewsTrack');
+  const revealEls = document.querySelectorAll('.reveal');
+
+  // ── Theme ──
+  let isDark = false;
+
+  themeToggle.addEventListener('click', function() {
+    isDark = !isDark;
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : '');
+    this.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  });
+
+  // ── Navigation Scroll ──
+  let lastScroll = 0;
+
+  function handleNavScroll() {
+    const scrollY = window.scrollY;
+
+    if (scrollY > 80) {
+      navbar.classList.remove('transparent');
+      navbar.classList.add('solid');
+    } else {
+      navbar.classList.add('transparent');
+      navbar.classList.remove('solid');
+    }
+
+    // Scroll progress
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+    scrollProgress.style.width = progress + '%';
+
+    // Back to top
+    if (scrollY > 600) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+
+    lastScroll = scrollY;
+  }
+
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+  handleNavScroll();
+
+  backToTop.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ── Mobile Menu ──
+  function openMobileMenu() {
+    mobileMenu.classList.add('open');
+    navHamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    navHamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  navHamburger.addEventListener('click', openMobileMenu);
+  mobileMenuClose.addEventListener('click', closeMobileMenu);
+
+  mobileLinks.forEach(function(link) {
+    link.addEventListener('click', function() {
+      closeMobileMenu();
+    });
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      closeMobileMenu();
+    }
+  });
+
+  // ── Menu Filter Tabs ──
+  const catMap = {
+    breakfast: 'cat-breakfast',
+    eggs: 'cat-eggs',
+    salads: 'cat-salads',
+    wraps: 'cat-wraps',
+    sides: 'cat-sides',
+    paninis: 'cat-paninis',
+    burgers: 'cat-burgers',
+    jacket: 'cat-jacket',
+    nachos: 'cat-nachos',
+    omelettes: 'cat-omelettes',
+    avocado: 'cat-avocado',
+    'hot-drinks': 'cat-hot-drinks',
+    'cold-drinks': 'cat-cold-drinks',
+    smoothies: 'cat-smoothies',
+    milkshakes: 'cat-milkshakes'
+  };
+
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const filter = this.getAttribute('data-filter');
+
+      filterBtns.forEach(function(b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+
+      this.classList.add('active');
+      this.setAttribute('aria-selected', 'true');
+
+      menuCategories.forEach(function(cat) {
+        cat.classList.remove('active');
+      });
+
+      const targetId = catMap[filter];
+      if (targetId) {
+        const target = document.getElementById(targetId);
+        if (target) target.classList.add('active');
+      }
+    });
+  });
+
+  // ── Scroll Reveal ──
+  const revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  revealEls.forEach(function(el) {
+    revealObserver.observe(el);
+  });
+
+  // ── Gallery Auto-scroll ──
+  var galleryPos = 0;
+  var galleryPaused = false;
+  var galleryRAF = null;
+  var gallerySpeed = 0.5;
+  var isDragging = false;
+  var dragStartX = 0;
+  var dragStartPos = 0;
+
+  function getGalleryMaxScroll() {
+    var items = galleryTrack.children;
+    var halfCount = Math.floor(items.length / 2);
+    var totalW = 0;
+    for (var i = 0; i < halfCount; i++) {
+      var item = items[i];
+      totalW += item.offsetWidth + 20; // 20 = gap
+    }
+    return totalW;
+  }
+
+  function animateGallery() {
+    if (!galleryPaused && !isDragging) {
+      galleryPos += gallerySpeed;
+      var maxScroll = getGalleryMaxScroll();
+      if (maxScroll > 0 && galleryPos >= maxScroll) {
+        galleryPos = 0;
+      }
+      galleryTrack.style.transform = 'translateX(-' + galleryPos + 'px)';
+    }
+    galleryRAF = requestAnimationFrame(animateGallery);
+  }
+
+  galleryWrap.addEventListener('mouseenter', function() { galleryPaused = true; });
+  galleryWrap.addEventListener('mouseleave', function() { galleryPaused = false; });
+
+  // Touch / drag
+  galleryWrap.addEventListener('mousedown', function(e) {
+    isDragging = true;
+    dragStartX = e.clientX;
+    dragStartPos = galleryPos;
+    galleryWrap.style.cursor = 'grabbing';
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (!isDragging) return;
+    var dx = dragStartX - e.clientX;
+    galleryPos = dragStartPos + dx;
+    var maxScroll = getGalleryMaxScroll();
+    if (galleryPos < 0) galleryPos = 0;
+    if (maxScroll > 0 && galleryPos > maxScroll) galleryPos = maxScroll;
+    galleryTrack.style.transform = 'translateX(-' + galleryPos + 'px)';
+  });
+
+  document.addEventListener('mouseup', function() {
+    if (isDragging) {
+      isDragging = false;
+      galleryWrap.style.cursor = 'grab';
+    }
+  });
+
+  // Touch support
+  var touchStartX = 0;
+  var touchStartPos = 0;
+
+  galleryWrap.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartPos = galleryPos;
+    galleryPaused = true;
+  }, { passive: true });
+
+  galleryWrap.addEventListener('touchmove', function(e) {
+    var dx = touchStartX - e.touches[0].clientX;
+    galleryPos = touchStartPos + dx;
+    var maxScroll = getGalleryMaxScroll();
+    if (galleryPos < 0) galleryPos = 0;
+    if (maxScroll > 0 && galleryPos > maxScroll) galleryPos = maxScroll;
+    galleryTrack.style.transform = 'translateX(-' + galleryPos + 'px)';
+  }, { passive: true });
+
+  galleryWrap.addEventListener('touchend', function() {
+    galleryPaused = false;
+  });
+
+  galleryRAF = requestAnimationFrame(animateGallery);
+
+  // ── Reviews Auto-scroll ──
+  var reviewsPos = 0;
+  var reviewsPaused = false;
+  var reviewsSpeed = 0.4;
+  var reviewsRAF = null;
+
+  function getReviewsMaxScroll() {
+    var items = reviewsTrack.children;
+    var halfCount = Math.floor(items.length / 2);
+    var totalW = 0;
+    for (var i = 0; i < halfCount; i++) {
+      var item = items[i];
+      totalW += item.offsetWidth + 24; // 24 = gap
+    }
+    return totalW;
+  }
+
+  function animateReviews() {
+    if (!reviewsPaused) {
+      reviewsPos += reviewsSpeed;
+      var maxScroll = getReviewsMaxScroll();
+      if (maxScroll > 0 && reviewsPos >= maxScroll) {
+        reviewsPos = 0;
+      }
+      reviewsTrack.style.transform = 'translateX(-' + reviewsPos + 'px)';
+    }
+    reviewsRAF = requestAnimationFrame(animateReviews);
+  }
+
+  reviewsTrack.addEventListener('mouseenter', function() { reviewsPaused = true; });
+  reviewsTrack.addEventListener('mouseleave', function() { reviewsPaused = false; });
+  reviewsTrack.addEventListener('touchstart', function() { reviewsPaused = true; }, { passive: true });
+  reviewsTrack.addEventListener('touchend', function() { reviewsPaused = false; });
+
+  reviewsRAF = requestAnimationFrame(animateReviews);
+
+  // ── Smooth anchor scrolling (account for nav height) ──
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        var offset = navbar.offsetHeight + 16;
+        var top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ── Prefers reduced motion ──
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    cancelAnimationFrame(galleryRAF);
+    cancelAnimationFrame(reviewsRAF);
+  }
+
+})();
+</script>
+
+</body>
+</html>
